@@ -1,0 +1,46 @@
+.reviews {
+    padding-bottom: 71px;
+
+    &__item {
+        margin-top: 100px;
+        display: flex; /* Ставимо картинку і текст в один ряд */
+        
+        /* Цей хитрий селектор прибирає такий великий відступ у найпершого відгуку, 
+           бо над ним вже є відступ від заголовка */
+        &:nth-child(2) {
+            margin-top: 70px;
+        }
+    }
+
+    &__img {
+        width: 169px;
+        height: 169px;
+        border-radius: 100%; /* На випадок, якщо картинки квадратні — робимо їх ідеально круглими */
+    }
+
+    &__text {
+        margin-left: 62px;
+        padding-right: 60px; /* Щоб текст не прилипав до правого краю екрана */
+    }
+
+    &__subtitle {
+        color: #0d0d0d;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    &__count {
+        color: #646464;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+
+    &__descr {
+        color: #0d0d0d;
+        font-size: 16px;
+        font-weight: 300;
+        margin-top: 10px;
+        line-height: 24px;
+    }
+}

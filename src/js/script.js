@@ -35,4 +35,81 @@ $(document).ready(function(){
             // instead of a settings object
         ]
     });
+    $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
+        $(this)
+          .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
+          .closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
+    });
+
+    
+    /* function toggleSlide(item) {
+        $(item).each(function(i) {
+            $(this).on('click', function(e) {
+                e.preventDefault(); // Зупиняємо стандартну поведінку посилання (щоб сторінка не стрибала вгору)
+                $('.catalog-item__content').eq(i).toggleClass('catalog-item__content_active');
+                $('.catalog-item__list').eq(i).toggleClass('catalog-item__list_active');
+            })
+        });
+    }; */
+
+    
+
+    function toggleSlide(item) {
+        $(item).each(function(i) {
+            $(this).on('click', function(e) {
+                e.preventDefault();
+                $('.catalog-item__content').eq(i).toggleClass('catalog-item__content_active');
+                $('.catalog-item__list').eq(i).toggleClass('catalog-item__list_active');
+            })
+        });
+    };
+
+
+
+
+    toggleSlide('.catalog-item__link');
+    toggleSlide('.catalog-item__back');
+
+    //modal
+
+    $('[data-modal=consultaion]').on('click', function() {
+        $('.overlay, #consultaion').fadeIn('fast');
+    });
+    $('.modal__close').on('click', function() {
+        $('.overlay, #consultaion, #order, #thanks').fadeOut('fast');
+    });
+    
+
+    $('.button_mini').each(function(i) {
+        $(this).on('click', function() {
+            $('#order .modal__descr').text($('catalog-item__subtitle').eq(i).text());
+            $('.overlay, #order').fadeIn('fast');
+        })
+    });
+    
+    $('input[name=phone]').mask("+38 (999) 999-99-99");
+    
+    function valideForms(form) {
+        $(form).validate({
+            rules: {
+                name: "required",
+                phone: "required",
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                name: "Будь ласка, введіть своє ім'я",
+                phone: "пж введи мобілу",
+                email: {
+                    required: "пж введи мило",
+                    email: "чувак введи норм мило"
+                }
+            }
+        });
+    };
+    valideForms('#consultaion-form');
+    valideForms('#consultaion form');
+    valideForms('#order form');
 });
